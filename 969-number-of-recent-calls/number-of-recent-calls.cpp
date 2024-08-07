@@ -8,14 +8,14 @@ public:
     
     int ping(int t) {
         int beg = t-3000;
-        int cnt=0;
         vc.push_back(t);
-        for(auto val:vc)
-        {
-            if(val>=beg && val<=t)
-            cnt++;
+       while (!vc.empty() && vc.front() < beg) {
+            vc.erase(vc.begin());
         }
-        return cnt;
+        
+        // Return the number of valid pings
+        return vc.size();
+    
         
     }
 };
