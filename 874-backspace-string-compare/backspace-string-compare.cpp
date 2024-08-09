@@ -1,31 +1,24 @@
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
-        string ss,tt="";
+        
+        
+              return processString(s) == processString(t);
+    }
+
+    string processString(string s){
+     string str="";
         for (int i=0; i<s.length(); i++)
         {
-              if (s[i] == '#') {
-                if (!ss.empty()) {
-                    ss.pop_back();  // Remove last character if `#` is encountered
+            if (s[i] == '#') {
+                if (!str.empty()) {
+                    str.pop_back(); 
                 }
             } 
             else
-                 ss+=s[i];
+                 str+=s[i];
         }
-        for (int i=0; i<t.length(); i++)
-        {
-            
-            if (t[i] == '#') {
-                if (!tt.empty()) {
-                    tt.pop_back();  // Remove last character if `#` is encountered
-                }
-            }
-            else
-                tt+=t[i];
-           
-        }
-        
-
-        return ss==tt;
+        return str;
     }
 };
+
