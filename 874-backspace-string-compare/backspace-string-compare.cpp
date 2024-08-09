@@ -3,10 +3,10 @@ public:
     bool backspaceCompare(string s, string t) {
         
         
-              return processString(s) == processString(t);
+              return formatString(s) == formatString(t);
     }
 
-    string processString(string s){
+    string formatString(string s){
      string str="";
         for (int i=0; i<s.length(); i++)
         {
