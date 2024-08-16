@@ -7,12 +7,8 @@ public:
     string third ="zxcvbnm";
     for (int i=0; i<words.size(); i++)
     {
-       if(SameLine(first, words[i]))
-            res.push_back(words[i]);
-        else if (SameLine(second, words[i]))    
-             res.push_back(words[i]);
-         else if (SameLine(third, words[i]))    
-             res.push_back(words[i]);  
+       if(SameLine(first, words[i]) || SameLine(second, words[i]) || SameLine(third, words[i]))
+            res.push_back(words[i]);    
     } 
     return res;
         
