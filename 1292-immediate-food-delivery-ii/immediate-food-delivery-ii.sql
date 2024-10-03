@@ -1,6 +1,9 @@
-WITH FIRST_ORDERS AS (SELECT CUSTOMER_ID, MIN(ORDER_DATE) as latest_order,  MIN(CUSTOMER_PREF_DELIVERY_DATE) as latest_delivery
-FROM DELIVERY
-GROUP BY CUSTOMER_ID)
-SELECT 
-    ROUND((SUM(latest_order = latest_delivery) * 100 / COUNT(*)) , 2) AS immediate_percentage 
-FROM FIRST_ORDERS;
+SELECT ROUND(
+    (SUM(IF(order_date = customer_pref_delivery_date, 1, 0)) / COUNT(customer_id))*100, 2
+) AS immediate_percentage
+FROM (
+    SELECT customer_id, order_date, customer_pref_delivery_date, 
+           ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date ASC) AS RN
+    FROM Delivery
+) TEMP
+WHERE RN = 1;
