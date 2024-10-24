@@ -1,3 +1,5 @@
-WITH NUMBERS AS (SELECT NUM, LEAD(NUM,1) OVER() NUM2,  LEAD(NUM,2) OVER() NUM3 FROM LOGS)
-SELECT NUM ConsecutiveNums FROM NUMBERS WHERE NUM=NUM2 AND NUM2=NUM3
-GROUP BY NUM
+# Write your MySQL query statement below
+SELECT DISTINCT (L1.num) AS ConsecutiveNums FROM logs L1 
+LEFT JOIN logs L2 ON L2.id = L1.id+1
+LEFT JOIN logs L3 ON L3.id = L2.id+1
+WHERE L1.num = L2.num AND L1.num = L3.num
